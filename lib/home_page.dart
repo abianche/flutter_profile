@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_profile/data/constants.dart';
 import 'package:flutter_profile/home_tabs/profile_tab.dart';
+import 'package:flutter_profile/models/settings.model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -30,9 +32,12 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: <Widget>[
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.moon),
-            onPressed: () {},
+          Consumer<SettingsModel>(
+            builder: (context, settings, _) => IconButton(
+              icon: FaIcon(settings.darkMode ? FontAwesomeIcons.sun : FontAwesomeIcons.moon),
+              onPressed: settings.toggleDarkMode,
+              tooltip: 'Switch to ${settings.darkMode ? 'light' : 'dark'} theme',
+            ),
           )
         ],
       ),

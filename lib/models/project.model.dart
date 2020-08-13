@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 
-class Project {
+class ProjectModel {
   final String image;
   final String name;
   final String description;
   final List<String> links;
   final String source;
 
-  Project({
+  ProjectModel({
     this.image,
     this.name,
     this.description,
@@ -15,14 +15,14 @@ class Project {
     this.source,
   });
 
-  Project copyWith({
+  ProjectModel copyWith({
     String image,
     String name,
     String description,
     List<String> links,
     String source,
   }) {
-    return Project(
+    return ProjectModel(
       image: image ?? this.image,
       name: name ?? this.name,
       description: description ?? this.description,
@@ -33,14 +33,14 @@ class Project {
 
   @override
   String toString() {
-    return 'Project(image: $image, name: $name, description: $description, links: $links, source: $source)';
+    return 'ProjectModel(image: $image, name: $name, description: $description, links: $links, source: $source)';
   }
 
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
-    return o is Project &&
+    return o is ProjectModel &&
         o.image == image &&
         o.name == name &&
         o.description == description &&

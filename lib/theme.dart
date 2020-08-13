@@ -7,28 +7,21 @@ class Palette {
   static const Color sunglow = Color(0xffffc43a);
 }
 
-ThemeData getTheme({bool isDark = true}) => isDark ? darkTheme : lightTheme;
-
 ThemeData lightTheme = ThemeData(
   textTheme: GoogleFonts.latoTextTheme().apply(
-    bodyColor: Colors.white,
-    displayColor: Colors.white,
+    bodyColor: Colors.black,
+    displayColor: Colors.black,
   ),
   primaryTextTheme: GoogleFonts.latoTextTheme().apply(
-    bodyColor: Colors.white,
-    displayColor: Colors.white,
+    bodyColor: Colors.black,
+    displayColor: Colors.black,
   ),
   iconTheme: const IconThemeData(
-    color: Colors.white,
+    color: Colors.black,
     size: 36.0,
   ),
-  appBarTheme: const AppBarTheme(
-    color: Palette.raisinBlack,
-  ),
-  scaffoldBackgroundColor: Palette.raisinBlack,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    backgroundColor: Palette.raisinBlack,
     selectedItemColor: Palette.sunburntCyclops,
   ),
 );
