@@ -3,7 +3,9 @@ import 'package:flutter_profile/data/constants.dart';
 import 'package:flutter_profile/home_page.dart';
 import 'package:flutter_profile/theme.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: Constants.fullName,
-      theme: getTheme(context),
+      theme: getTheme(),
       home: const HomePage(),
     );
   }

@@ -29,9 +29,10 @@ class _HomePageState extends State<HomePage> {
             fontSize: 16.0,
           ),
         ),
-        actions: const <Widget>[
+        actions: <Widget>[
           IconButton(
-            icon: FaIcon(FontAwesomeIcons.moon),
+            icon: const FaIcon(FontAwesomeIcons.moon),
+            onPressed: () {},
           )
         ],
       ),
