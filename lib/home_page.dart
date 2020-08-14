@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         ],
+        elevation: 0.0,
       ),
       body: Center(
         child: tabs.elementAt(_currentIndex),
@@ -57,6 +58,7 @@ class _HomePageState extends State<HomePage> {
         ],
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
+        elevation: 0.0,
       ),
     );
   }
