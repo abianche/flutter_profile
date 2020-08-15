@@ -48,4 +48,13 @@ ThemeData darkTheme = ThemeData(
     backgroundColor: Palette.raisinBlack,
     selectedItemColor: Palette.sunburntCyclops,
   ),
+  navigationRailTheme: const NavigationRailThemeData(
+    backgroundColor: Palette.raisinBlack,
+    selectedIconTheme: IconThemeData(
+      color: Palette.sunburntCyclops,
+    ),
+    selectedLabelTextStyle: TextStyle(
+      color: Colors.white,
+    ),
+  ),
 );
