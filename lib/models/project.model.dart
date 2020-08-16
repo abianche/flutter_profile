@@ -4,36 +4,48 @@ class ProjectModel {
   final String image;
   final String name;
   final String description;
-  final List<String> links;
-  final String source;
+  final String repositoryLink;
+  final String playStoreLink;
+  final String appStoreLink;
+  final String websiteLink;
+  final List<String> additionalLinks;
 
   ProjectModel({
     this.image,
     this.name,
     this.description,
-    this.links,
-    this.source,
+    this.repositoryLink = '',
+    this.playStoreLink = '',
+    this.appStoreLink = '',
+    this.websiteLink = '',
+    this.additionalLinks = const [],
   });
 
   ProjectModel copyWith({
     String image,
     String name,
     String description,
-    List<String> links,
-    String source,
+    String repositoryLink,
+    String playStoreLink,
+    String appStoreLink,
+    String websiteLink,
+    List<String> additionalLinks,
   }) {
     return ProjectModel(
       image: image ?? this.image,
       name: name ?? this.name,
       description: description ?? this.description,
-      links: links ?? this.links,
-      source: source ?? this.source,
+      repositoryLink: repositoryLink ?? this.repositoryLink,
+      playStoreLink: playStoreLink ?? this.playStoreLink,
+      appStoreLink: appStoreLink ?? this.appStoreLink,
+      websiteLink: websiteLink ?? this.websiteLink,
+      additionalLinks: additionalLinks ?? this.additionalLinks,
     );
   }
 
   @override
   String toString() {
-    return 'ProjectModel(image: $image, name: $name, description: $description, links: $links, source: $source)';
+    return 'ProjectModel(image: $image, name: $name, description: $description, repositoryLink: $repositoryLink, playStoreLink: $playStoreLink, appStoreLink: $appStoreLink, websiteLink: $websiteLink, additionalLinks: $additionalLinks)';
   }
 
   @override
@@ -44,8 +56,11 @@ class ProjectModel {
         o.image == image &&
         o.name == name &&
         o.description == description &&
-        listEquals(o.links, links) &&
-        o.source == source;
+        o.repositoryLink == repositoryLink &&
+        o.playStoreLink == playStoreLink &&
+        o.appStoreLink == appStoreLink &&
+        o.websiteLink == websiteLink &&
+        listEquals(o.additionalLinks, additionalLinks);
   }
 
   @override
@@ -53,7 +68,10 @@ class ProjectModel {
     return image.hashCode ^
         name.hashCode ^
         description.hashCode ^
-        links.hashCode ^
-        source.hashCode;
+        repositoryLink.hashCode ^
+        playStoreLink.hashCode ^
+        appStoreLink.hashCode ^
+        websiteLink.hashCode ^
+        additionalLinks.hashCode;
   }
 }

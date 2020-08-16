@@ -8,19 +8,19 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final footerButtons = <Widget>[
-  const Text("Made with "),
+  const Text('Made with '),
   const Icon(
     FontAwesomeIcons.solidHeart,
     size: 16.0,
     color: Palette.sunburntCyclops,
   ),
-  const Text(" in Flutter"),
+  const Text(' in Flutter'),
   InkWell(
     hoverColor: Colors.transparent,
     onTap: () => launch(
-        "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LCVGA76B4AH5U&currency_code=EUR&source=url"),
+        'https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LCVGA76B4AH5U&currency_code=EUR&source=url'),
     child: Tooltip(
-      message: "PayPal - The safer, easier way to pay online!",
+      message: 'PayPal - The safer, easier way to pay online!',
       child: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(90)),
@@ -28,7 +28,7 @@ final footerButtons = <Widget>[
         ),
         padding: const EdgeInsets.fromLTRB(6, 0, 6, 0),
         child: const Text(
-          "Donate",
+          'Donate',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black,
@@ -37,8 +37,8 @@ final footerButtons = <Widget>[
       ),
     ),
   ),
-  const Text("All rights reserved"),
-  Text("© ${DateTime.now().year}"),
+  const Text('All rights reserved'),
+  Text('© ${DateTime.now().year}'),
 ];
 
 class HomePage extends StatefulWidget {
