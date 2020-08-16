@@ -28,6 +28,7 @@ ThemeData lightTheme = ThemeData(
       size: 36.0,
     ),
   ),
+  cardColor: Colors.white,
   scaffoldBackgroundColor: Colors.white,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -71,6 +72,7 @@ ThemeData darkTheme = ThemeData(
       size: 36.0,
     ),
   ),
+  cardColor: Palette.raisinBlack,
   scaffoldBackgroundColor: Palette.raisinBlack,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(

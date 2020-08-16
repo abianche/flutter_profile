@@ -20,8 +20,7 @@ final List<ProjectModel> projects = [
   ),
   ProjectModel(
     name: 'Pomodoro Time',
-    description:
-        'Free Android and iOS application built with Flutter (currently not released)',
+    description: 'Free Android and iOS application built with Flutter (demo)',
     image: Assets.pomodoroTimeImage,
     repositoryLink: 'https://github.com/abianche/pomodoro_time',
   ),
@@ -30,5 +29,7 @@ final List<ProjectModel> projects = [
     description:
         "Website for my portfolio built with Flutter. You're browsing it right now!",
     image: Assets.portfolioImage,
+    websiteLink: 'https://abianche.github.io/',
+    repositoryLink: 'https://github.com/abianche/flutter_profile',
   ),
 ];
