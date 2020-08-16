@@ -15,7 +15,7 @@ class ProfileTab extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(16.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24.0),
               child: FadeInImage(
@@ -28,18 +28,15 @@ class ProfileTab extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text(
-            Constants.fullName,
-            style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              Constants.fullName,
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
           ),
           const Text(
             Constants.jobTitle,
@@ -48,38 +45,43 @@ class ProfileTab extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          Wrap(
-            spacing: 24,
-            children: <Widget>[
-              IconButton(
-                icon: const FaIcon(FontAwesomeIcons.solidEnvelope),
-                iconSize: 36,
-                onPressed: () => launch(Constants.mailtoLink),
-              ),
-              IconButton(
-                icon: const FaIcon(FontAwesomeIcons.github),
-                iconSize: 36,
-                onPressed: () => launch(Constants.githubProfile),
-              ),
-              IconButton(
-                icon: const FaIcon(FontAwesomeIcons.telegram),
-                iconSize: 36,
-                onPressed: () => launch(Constants.telegramProfile),
-              ),
-              IconButton(
-                icon: const FaIcon(FontAwesomeIcons.linkedin),
-                iconSize: 36,
-                onPressed: () => launch(Constants.linkedInProfile),
-              ),
-              IconButton(
-                icon: const FaIcon(FontAwesomeIcons.facebook),
-                iconSize: 36,
-                onPressed: () => launch(Constants.facebookProfile),
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Wrap(
+              spacing: 24,
+              children: <Widget>[
+                IconButton(
+                  icon: const FaIcon(FontAwesomeIcons.solidEnvelope),
+                  iconSize: 36,
+                  onPressed: () => launch(Constants.mailtoLink),
+                  tooltip: "Send an e-mail",
+                ),
+                IconButton(
+                  icon: const FaIcon(FontAwesomeIcons.github),
+                  iconSize: 36,
+                  onPressed: () => launch(Constants.githubProfile),
+                  tooltip: "GitHub",
+                ),
+                IconButton(
+                  icon: const FaIcon(FontAwesomeIcons.telegram),
+                  iconSize: 36,
+                  onPressed: () => launch(Constants.telegramProfile),
+                  tooltip: "Telegram",
+                ),
+                IconButton(
+                  icon: const FaIcon(FontAwesomeIcons.linkedin),
+                  iconSize: 36,
+                  onPressed: () => launch(Constants.linkedInProfile),
+                  tooltip: "LinkedIn",
+                ),
+                IconButton(
+                  icon: const FaIcon(FontAwesomeIcons.facebook),
+                  iconSize: 36,
+                  onPressed: () => launch(Constants.facebookProfile),
+                  tooltip: "Facebook",
+                )
+              ],
+            ),
           ),
         ],
       ),

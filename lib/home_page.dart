@@ -1,9 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_profile/data/constants.dart';
 import 'package:flutter_profile/home_tabs/profile_tab.dart';
-import 'package:flutter_profile/models/settings.model.dart';
+import 'package:flutter_profile/home_tabs/projects_tab.dart';
+import 'package:flutter_profile/theme.dart';
+import 'package:flutter_profile/widgets/header.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+final footerButtons = <Widget>[
+  const Text("Made with "),
+  const Icon(
+    FontAwesomeIcons.solidHeart,
+    size: 16.0,
+    color: Palette.sunburntCyclops,
+  ),
+  const Text(" in Flutter"),
+  InkWell(
+    hoverColor: Colors.transparent,
+    onTap: () => launch(
+        "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LCVGA76B4AH5U&currency_code=EUR&source=url"),
+    child: Tooltip(
+      message: "PayPal - The safer, easier way to pay online!",
+      child: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(90)),
+          color: Palette.sunglow,
+        ),
+        padding: const EdgeInsets.fromLTRB(6, 0, 6, 0),
+        child: const Text(
+          "Donate",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+      ),
+    ),
+  ),
+  const Text("All rights reserved"),
+  Text("© ${DateTime.now().year}"),
+];
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -15,12 +51,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static const List<Widget> tabs = <Widget>[
     ProfileTab(),
-    ProfileTab(),
+    ProjectsTab(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return const HomePageWeb(tabs: tabs);
+    return ScreenTypeLayout.builder(
+      desktop: (_) => const HomePageWeb(tabs: tabs),
+      mobile: (_) => const HomePageMobile(tabs: tabs),
+    );
+    // return const HomePageWeb(tabs: tabs);
   }
 }
 
@@ -42,34 +82,16 @@ class _HomePageMobileState extends State<HomePageMobile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          Constants.fullName.toUpperCase(),
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 16.0,
-          ),
-        ),
-        actions: <Widget>[
-          Consumer<SettingsModel>(
-            builder: (context, settings, _) => IconButton(
-              icon: FaIcon(settings.darkMode ? FontAwesomeIcons.sun : FontAwesomeIcons.moon),
-              onPressed: settings.toggleDarkMode,
-              tooltip: 'Switch to ${settings.darkMode ? 'light' : 'dark'} theme',
-            ),
-          )
-        ],
-        elevation: 0.0,
-      ),
+      appBar: const Header(),
       body: Center(
         child: widget.tabs.elementAt(_currentIndex),
       ),
+      persistentFooterButtons: footerButtons,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.personBooth),
-            title: Text('About'),
+            title: Text('Profile'),
           ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.projectDiagram),
@@ -102,26 +124,8 @@ class _HomePageWebState extends State<HomePageWeb> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          Constants.fullName.toUpperCase(),
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 16.0,
-          ),
-        ),
-        actions: <Widget>[
-          Consumer<SettingsModel>(
-            builder: (context, settings, _) => IconButton(
-              icon: FaIcon(settings.darkMode ? FontAwesomeIcons.sun : FontAwesomeIcons.moon),
-              onPressed: settings.toggleDarkMode,
-              tooltip: 'Switch to ${settings.darkMode ? 'light' : 'dark'} theme',
-            ),
-          )
-        ],
-        elevation: 0.0,
-      ),
+      appBar: const Header(),
+      persistentFooterButtons: footerButtons,
       body: Row(
         children: [
           NavigationRail(
@@ -135,18 +139,19 @@ class _HomePageWebState extends State<HomePageWeb> {
             destinations: const <NavigationRailDestination>[
               NavigationRailDestination(
                 icon: FaIcon(FontAwesomeIcons.personBooth),
-                selectedIcon: Icon(Icons.favorite),
-                label: Text('About'),
+                label: Text('Profile'),
               ),
               NavigationRailDestination(
                 icon: FaIcon(FontAwesomeIcons.projectDiagram),
-                selectedIcon: Icon(Icons.book),
                 label: Text('Projects'),
               ),
             ],
           ),
-          const VerticalDivider(thickness: 1, width: 1),
-          Expanded(child: Center(child: widget.tabs.elementAt(_currentIndex))),
+          Expanded(
+            child: Center(
+              child: widget.tabs.elementAt(_currentIndex),
+            ),
+          ),
         ],
       ),
     );

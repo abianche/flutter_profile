@@ -50,6 +50,10 @@ class ProjectModel {
 
   @override
   int get hashCode {
-    return image.hashCode ^ name.hashCode ^ description.hashCode ^ links.hashCode ^ source.hashCode;
+    return image.hashCode ^
+        name.hashCode ^
+        description.hashCode ^
+        links.hashCode ^
+        source.hashCode;
   }
 }
