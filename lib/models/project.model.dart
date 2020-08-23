@@ -1,5 +1,15 @@
 import 'package:flutter/foundation.dart';
 
+class GenericLink {
+  final String url;
+  final String title;
+
+  GenericLink({
+    this.url = '',
+    this.title = '',
+  });
+}
+
 class ProjectModel {
   final String image;
   final String name;
@@ -8,7 +18,7 @@ class ProjectModel {
   final String playStoreLink;
   final String appStoreLink;
   final String websiteLink;
-  final List<String> additionalLinks;
+  final List<GenericLink> additionalLinks;
 
   ProjectModel({
     this.image,
@@ -29,7 +39,7 @@ class ProjectModel {
     String playStoreLink,
     String appStoreLink,
     String websiteLink,
-    List<String> additionalLinks,
+    List<GenericLink> additionalLinks,
   }) {
     return ProjectModel(
       image: image ?? this.image,

@@ -16,74 +16,82 @@ class Project extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Wrap(
-        direction: Axis.vertical,
-        alignment: WrapAlignment.center,
-        runAlignment: WrapAlignment.center,
-        crossAxisAlignment: WrapCrossAlignment.center,
+      child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(24.0),
-              child: FadeInImage(
-                placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(
-                  project.image,
-                ),
-                height: 200.0,
-                fit: BoxFit.contain,
-                fadeInDuration: const Duration(milliseconds: 350),
+          Expanded(
+            child: FadeInImage(
+              placeholder: MemoryImage(kTransparentImage),
+              image: NetworkImage(
+                project.image,
               ),
+              fit: BoxFit.fitWidth,
+              fadeInDuration: const Duration(milliseconds: 350),
             ),
           ),
-          AutoSizeText(
-            project.name,
-            textScaleFactor: 2.5,
-            maxLines: 1,
-          ),
-          AutoSizeText(
-            project.description,
-            textScaleFactor: 1.1,
-            maxLines: 2,
-          ),
-          Wrap(
-            children: <Widget>[
-              if (project.websiteLink.isNotEmpty)
-                IconButton(
-                  icon: const FaIcon(FontAwesomeIcons.globe),
-                  tooltip: 'Website',
-                  onPressed: () => launch(project.websiteLink),
-                ),
-              if (project.repositoryLink.isNotEmpty)
-                IconButton(
-                  icon: const FaIcon(FontAwesomeIcons.code),
-                  tooltip: 'Repository',
-                  onPressed: () => launch(project.repositoryLink),
-                ),
-              if (project.playStoreLink.isNotEmpty)
-                IconButton(
-                  icon: const FaIcon(FontAwesomeIcons.googlePlay),
-                  tooltip: 'Google Play',
-                  onPressed: () => launch(project.playStoreLink),
-                ),
-              if (project.appStoreLink.isNotEmpty)
-                IconButton(
-                  icon: const FaIcon(FontAwesomeIcons.apple),
-                  tooltip: 'Apple Store',
-                  onPressed: () => launch(project.appStoreLink),
-                ),
-              if (project.additionalLinks.isNotEmpty)
-                ...project.additionalLinks
-                    .map(
-                      (link) => IconButton(
-                        icon: const FaIcon(FontAwesomeIcons.link),
-                        tooltip: 'Link',
-                        onPressed: () => launch(link),
-                      ),
-                    )
-                    .toList()
-            ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  AutoSizeText(
+                    project.name,
+                    textScaleFactor: 1.5,
+                    overflow: TextOverflow.fade,
+                    maxLines: 1,
+                  ),
+                  AutoSizeText(
+                    project.description,
+                    textScaleFactor: 1.1,
+                    overflow: TextOverflow.fade,
+                    maxLines: 2,
+                  ),
+                  Divider(),
+                  Wrap(
+                    children: <Widget>[
+                      if (project.websiteLink.isNotEmpty)
+                        IconButton(
+                          icon: const FaIcon(FontAwesomeIcons.globe),
+                          tooltip: 'Website',
+                          iconSize: 20.0,
+                          onPressed: () => launch(project.websiteLink),
+                        ),
+                      if (project.repositoryLink.isNotEmpty)
+                        IconButton(
+                          icon: const FaIcon(FontAwesomeIcons.code),
+                          tooltip: 'Repository',
+                          iconSize: 20.0,
+                          onPressed: () => launch(project.repositoryLink),
+                        ),
+                      if (project.playStoreLink.isNotEmpty)
+                        IconButton(
+                          icon: const FaIcon(FontAwesomeIcons.googlePlay),
+                          tooltip: 'Google Play',
+                          iconSize: 20.0,
+                          onPressed: () => launch(project.playStoreLink),
+                        ),
+                      if (project.appStoreLink.isNotEmpty)
+                        IconButton(
+                          icon: const FaIcon(FontAwesomeIcons.apple),
+                          tooltip: 'Apple Store',
+                          iconSize: 20.0,
+                          onPressed: () => launch(project.appStoreLink),
+                        ),
+                      if (project.additionalLinks.isNotEmpty)
+                        ...project.additionalLinks
+                            .map(
+                              (link) => IconButton(
+                                icon: const FaIcon(FontAwesomeIcons.link),
+                                tooltip: link.title,
+                                iconSize: 20.0,
+                                onPressed: () => launch(link.url),
+                              ),
+                            )
+                            .toList()
+                    ],
+                  )
+                ],
+              ),
+            ),
           )
         ],
       ),
